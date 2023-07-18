@@ -1,0 +1,60 @@
+{
+    "name": "latex_container",
+    "service": "alpine-texlive-ja",
+    "dockerComposeFile": "docker-compose.yml",
+    "workspaceFolder": "/workspace",
+    // 拡張機能
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "james-yu.latex-workshop",
+                "donjayamanne.githistory",
+                "eamodio.gitlens",
+                "ICS.japanese-proofreading"
+            ],
+            "settings": {
+                "terminal.integrated.shell": "/bin/bash",
+                /* LateX Workshop */
+                "latex-workshop.latex.autoBuild.interval": 0,
+                "latex-workshop.latex.autoBuild.run": "onFileChange",
+                "latex-workshop.latex.clean.enabled": true,
+                "latex-workshop.latex.autoClean.run": "onBuilt",
+                "latex-workshop.latex.clean.method": "glob",
+                "latex-workshop.message.update.show": false,
+                "latex-workshop.synctex.afterBuild.enabled": true,
+                "latex-workshop.view.pdf.viewer": "tab",
+                "latex-workshop.intellisense.package.enabled": true,
+                "latex-workshop.latex.outDir": "pdf",
+                 // recipe
+                "latex-workshop.latex.recipes": [
+                    {
+                        "name": "latexmk",
+                        "tools": ["latexmk"]
+                    }
+                ],
+                // tools
+                "latex-workshop.latex.tools": [
+                    {
+                        "name": "latexmk",
+                        "command": "latexmk",
+                        "args": [
+                            "-synctex=1",
+                            "-halt-on-error",
+                            "-interaction=nonstopmode",
+                            "-file-line-error",
+                            "%DOC%",
+                            "-outdir=%OUTDIR%"
+                        ]
+                    }
+                ],
+                "latex-workshop.latex.clean.fileTypes": [
+                    "*.aux", "*.bbl", "*.blg", "*.idx", "*.ind", "*.lof", "*.lot", "*.out", "*.toc", "*.acn", "*.acr", "*.alg", "*.glg", "*.glo", "*.gls", "*.ist", "*.fls", "*.log", "*.fdb_latexmk", "*.snm", "*.nav", "*.dvi", "*.synctex.gz"
+                ],
+                /* テキスト校正くん */
+                "japanese-proofreading.textlint.ピリオドとカンマの使用（全角）": false,
+                "japanese-proofreading.textlint.ピリオドとカンマの使用（半角）": false,
+                "japanese-proofreading.textlint.丸かっこ（）": false
+            }
+        }
+    }
+}

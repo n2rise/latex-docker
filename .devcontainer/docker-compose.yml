@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  alpine-texlive-ja:
+    build: .
+    environment:
+      SHELL: "/bin/bash"
+    image: alpine-texlive-ja
+    container_name: latex_container
+    hostname: nino
+    ports:
+    - 33417:33417
+    stdin_open: true
+    tty: true
+    volumes:
+    - ../:/workspace
+    - /workspace/.ssh
